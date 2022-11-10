@@ -41,7 +41,7 @@ public class PriceListRepositoryTest {
 	@Test
 	void shouldReturnPrice3550_whenOnlyOnePriceMatch() {
 		// Given
-		final Integer branchId = 1;
+		final Integer brandId = 1;
 		final Integer productId = 35455;
 		final LocalDateTime date = LocalDateTime.of(2020, 6, 14, 19, 05);
 		final PriceListEntity expectedPrice = PriceListEntity.builder()
@@ -56,7 +56,7 @@ public class PriceListRepositoryTest {
 				.curr("EUR")
 				.build();
 		// When
-		final List<PriceListEntity> actualList = this.repository.findPrice(date, productId, branchId);
+		final List<PriceListEntity> actualList = this.repository.findPrice(date, productId, brandId);
 		
 		// Then
 		Assertions.assertFalse(actualList.isEmpty());
@@ -66,7 +66,7 @@ public class PriceListRepositoryTest {
 	@Test
 	void shouldReturnPriorizedPrice2545_whenTwoPricesMatch() {
 		// Given
-		final Integer branchId = 1;
+		final Integer brandId = 1;
 		final Integer productId = 35455;
 		final LocalDateTime date = LocalDateTime.of(2020, 6, 14, 18, 05);
 		final PriceListEntity expectedPrice = PriceListEntity.builder()
@@ -81,7 +81,7 @@ public class PriceListRepositoryTest {
 				.curr("EUR")
 				.build();
 		// When
-		final List<PriceListEntity> actualList = this.repository.findPrice(date, productId, branchId);
+		final List<PriceListEntity> actualList = this.repository.findPrice(date, productId, brandId);
 		
 		// Then
 		Assertions.assertFalse(actualList.isEmpty());
