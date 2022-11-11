@@ -16,6 +16,9 @@ import dme.ecommerce.prices.persitence.entity.PriceListEntity;
 import dme.ecommerce.prices.persitence.repository.PriceListRepository;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * Repository test.
+ */
 @SpringJUnitConfig
 @ActiveProfiles({"test"})
 @DataJpaTest
