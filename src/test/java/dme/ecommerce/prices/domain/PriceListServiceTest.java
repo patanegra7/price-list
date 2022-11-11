@@ -15,6 +15,7 @@ import org.mockito.Mockito;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
+import org.springframework.test.context.ActiveProfiles;
 
 import dme.ecommerce.prices.domain.entity.Price;
 import dme.ecommerce.prices.domain.service.PriceListService;
@@ -25,6 +26,7 @@ import dme.ecommerce.prices.persitence.repository.PriceListRepository;
  * Unit Test {@link PriceListService}.
  */
 @ExtendWith(MockitoExtension.class)
+@ActiveProfiles("test")
 public class PriceListServiceTest {
 	
 	@Mock

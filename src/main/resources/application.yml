@@ -1,0 +1,30 @@
+spring:
+  # Database Properties
+  jpa:
+    database: H2
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+  database:
+    driverClassName: org.h2.Driver
+  datasource:
+    url: jdbc:h2:mem:pricedb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;MODE=MySQL;INIT=CREATE SCHEMA IF NOT EXISTS public;DATABASE_TO_UPPER=false
+    username: sa
+    password:
+  h2:
+    console:
+      enabled: true
+  # Flyway Properties
+  flyway:
+    locations: filesystem:src/main/resources/db/migration
+    enabled: true
+    baseline-on-migrate: true
+
+# Logging
+logging:
+  level:
+    dme.ecommerce.prices: info
+    org.springframework.web: info
