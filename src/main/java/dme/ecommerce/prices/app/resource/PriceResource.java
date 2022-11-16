@@ -1,7 +1,5 @@
 package dme.ecommerce.prices.app.resource;
 
-import java.util.Optional;
-
 import org.modelmapper.ModelMapper;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,7 +11,6 @@ import dme.ecommerce.prices.app.dto.PriceDto;
 import dme.ecommerce.prices.app.dto.PriceSearchDto;
 import dme.ecommerce.prices.app.exception.PriceNotFoundException;
 import dme.ecommerce.prices.app.exception.RequiredArgumentsException;
-import dme.ecommerce.prices.domain.entity.Price;
 import dme.ecommerce.prices.domain.service.PriceListService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -38,14 +35,12 @@ public class PriceResource {
 			throw new RequiredArgumentsException();
 		}
 		PriceResource.log.info("Search Price for brandId: {} and {}", brandId, searchParams);
-		final Optional<Price> price =  this.priceListService.findPrice(searchParams.getDate(), searchParams.getProductId(), brandId);
+		final var price =  this.priceListService.findPrice(searchParams.getDate(), searchParams.getProductId(), brandId)
+				.map(p -> this.modelMapper.map(p, PriceDto.class))
+				.orElseThrow(PriceNotFoundException::new);
+		PriceResource.log.info("PriceDTO return: {}", price);
+		return price;
 		
-		if(price.isPresent()) {
-			final var priceDto = this.modelMapper.map(price.get(),PriceDto.class);
-			PriceResource.log.info("PriceDTO return: {}", priceDto);
-			return priceDto;
-		}
-		throw new PriceNotFoundException();
 	}
 	
 }
