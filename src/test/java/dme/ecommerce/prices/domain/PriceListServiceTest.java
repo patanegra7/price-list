@@ -18,12 +18,12 @@ import org.modelmapper.ModelMapper;
 import org.springframework.test.context.ActiveProfiles;
 
 import dme.ecommerce.prices.domain.entity.Price;
-import dme.ecommerce.prices.domain.service.PriceListService;
+import dme.ecommerce.prices.domain.service.PriceListServiceImpl;
 import dme.ecommerce.prices.persitence.entity.PriceListEntity;
 import dme.ecommerce.prices.persitence.repository.PriceListRepository;
 
 /**
- * Unit Test {@link PriceListService}.
+ * Unit Test {@link PriceListServiceImpl}.
  */
 @ExtendWith(MockitoExtension.class)
 @ActiveProfiles("test")
@@ -36,7 +36,7 @@ public class PriceListServiceTest {
 	private final ModelMapper modelMapper = new ModelMapper();
 	
 	@InjectMocks
-	private PriceListService priceListService;
+	private PriceListServiceImpl priceListService;
 	
 	@Test
 	void shouldReturnOptionalEmpty_whenAnyPriceIsFound() {
